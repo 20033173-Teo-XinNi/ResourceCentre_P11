@@ -29,7 +29,13 @@ public class ResourceCentre {
 			} else if (option == 2) {
 				// Add a new item
 				ResourceCentre.setHeader("ADD");			
+<<<<<<< HEAD
 				itemTypeMenu();         //Refactor Extract method
+=======
+				System.out.println("ITEM TYPES");
+				System.out.println("1. Camcorder");
+				System.out.println("2. Chromebook");
+>>>>>>> branch 'master' of https://github.com/20033173-Teo-XinNi/ResourceCentre_P11.git
 				
 				int itemType = Helper.readInt("Enter option to select item type > ");
 
@@ -188,13 +194,24 @@ public class ResourceCentre {
 		
 	}
 	public static void addCamcorder(ArrayList<Camcorder> camcorderList, Camcorder cc) {
+		int size = camcorderList.size();
+		for (int i = 0; i < size; i++) {
+			String assetTag = camcorderList.get(i).getAssetTag();
+			String assetTag2 = cc.getAssetTag();
+			if(assetTag2.equalsIgnoreCase(assetTag)) {
+				System.out.println("Error! Duplicate asset tag!");
+				break;
+			}else {
+				camcorderList.add(cc);
+				System.out.println("Camcorder added");
+			}
+		}
 		
-		camcorderList.add(cc);
-		System.out.println("Camcorder added");
 	}
 	
 	public static Chromebook inputChromebook() {
 		String tag = Helper.readString("Enter asset tag > ");
+
 		String description = Helper.readString("Enter description > ");
 		String os = Helper.readString("Enter operating system > ");
 
@@ -203,9 +220,19 @@ public class ResourceCentre {
 		
 	}	
 	public static void addChromebook(ArrayList<Chromebook> chromebookList, Chromebook cb) {
+		int size = chromebookList.size();
+		for (int i = 0; i < size; i++) {
+			String assetTag = chromebookList.get(i).getAssetTag();
+			String assetTag2 = cb.getAssetTag();
+			if(assetTag2.equalsIgnoreCase(assetTag)) {
+				System.out.println("Error! Duplicate asset tag!");
+				break;
+			}else {
+				chromebookList.add(cb);
+				System.out.println("Chromebook added");
+			}
+		}
 
-		chromebookList.add(cb);
-		System.out.println("Chromebook added");
 	}
 	
 	//================================= Option 3 Loan (CURD- Update) =================================
