@@ -129,14 +129,12 @@ public class ResourceCentre {
 	//================================= Option 1 View (CRUD - Read) =================================
 	public static String retrieveAllCamcorder(ArrayList<Camcorder> camcorderList) {
 		String output = "";
-
+		
+		//refactor local variable
 		int size = camcorderList.size();
 		for (int i = 0; i < size; i++) {
-
-			output += String.format("%-10s %-30s %-10s %-10s %-20d\n", camcorderList.get(i).getAssetTag(),
-					camcorderList.get(i).getDescription(), 
-					ResourceCentre.showAvailability(camcorderList.get(i).getIsAvailable()),
-					camcorderList.get(i).getDueDate(),camcorderList.get(i).getOpticalZoom());
+			 //refactor long code
+			output += String.format("%-84s \n", camcorderList.get(i).toString());
 		}
 		return output;
 	}
@@ -157,11 +155,7 @@ public class ResourceCentre {
 	
 		for (int i = 0; i < size; i++) {
             //refactor long code
-			Chromebook chromebook = chromebookList.get(i);
-			output += String.format("%-10s %-30s %-10s %-10s %-20s\n", chromebook.getAssetTag(),
-					chromebook.getDescription(), 
-					ResourceCentre.showAvailability(chromebook.getIsAvailable()),
-					chromebook.getDueDate(),chromebook.getOs());
+			output += String.format("%-84s\n", chromebookList.get(i).toString());
 		}
 		return output;
 	}
@@ -190,19 +184,34 @@ public class ResourceCentre {
 		
 	}
 	public static void addCamcorder(ArrayList<Camcorder> camcorderList, Camcorder cc) {
+		//Check for duplicate
 		int size = camcorderList.size();
+		
+		boolean duplicate = false;
+		
+		String assetTag2 = cc.getAssetTag();
+		
 		for (int i = 0; i < size; i++) {
 			String assetTag = camcorderList.get(i).getAssetTag();
-			String assetTag2 = cc.getAssetTag();
+			
 			if(assetTag2.equalsIgnoreCase(assetTag)) {
-				System.out.println("Error! Duplicate asset tag!");
+				duplicate = true;
 				break;
 			}else {
-				camcorderList.add(cc);
-				System.out.println("Camcorder added");
+				duplicate = false;
 			}
 		}
 		
+		if(duplicate == true) {
+			System.out.println("Error! Duplicate asset tag!");
+		} else {
+			camcorderList.add(cc);
+			System.out.println("Camcorder added");
+		}
+		
+
+//		camcorderList.add(cc);
+//		System.out.println("Camcorder added");
 	}
 	
 	public static Chromebook inputChromebook() {
@@ -216,18 +225,32 @@ public class ResourceCentre {
 		
 	}	
 	public static void addChromebook(ArrayList<Chromebook> chromebookList, Chromebook cb) {
+		//Check for duplicate
+		boolean duplicate = false;
+		
 		int size = chromebookList.size();
+		
+		String assetTag2 = cb.getAssetTag();
+		
 		for (int i = 0; i < size; i++) {
 			String assetTag = chromebookList.get(i).getAssetTag();
-			String assetTag2 = cb.getAssetTag();
 			if(assetTag2.equalsIgnoreCase(assetTag)) {
-				System.out.println("Error! Duplicate asset tag!");
+				duplicate = true;
 				break;
 			}else {
-				chromebookList.add(cb);
-				System.out.println("Chromebook added");
+				duplicate = false;
 			}
 		}
+		
+		if(duplicate == true) {
+			System.out.println("Error! Duplicate asset tag!");
+		} else {
+			chromebookList.add(cb);
+			System.out.println("Chromebook added");
+		}
+		
+//		chromebookList.add(cb);
+//		System.out.println("Chromebook added");
 
 	}
 	
