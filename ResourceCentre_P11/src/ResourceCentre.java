@@ -127,7 +127,8 @@ public class ResourceCentre {
 	public static String retrieveAllCamcorder(ArrayList<Camcorder> camcorderList) {
 		String output = "";
 
-		for (int i = 0; i < camcorderList.size(); i++) {
+		int size = camcorderList.size();
+		for (int i = 0; i < size; i++) {
 
 			output += String.format("%-10s %-30s %-10s %-10s %-20d\n", camcorderList.get(i).getAssetTag(),
 					camcorderList.get(i).getDescription(), 
@@ -148,17 +149,10 @@ public class ResourceCentre {
 		String output = "";
 		// write your code here
 		
+		//refactor local variable
 		int size = chromebookList.size();
 		for (int i = 0; i < size; i++) {
-
-//			String assetTag = chromebookList.get(i).getAssetTag();
-//			String description = chromebookList.get(i).getDescription();
-//			String showAvailability = ResourceCentre.showAvailability(chromebookList.get(i).getIsAvailable());
-//			String dueDate = chromebookList.get(i).getDueDate();
-//			String os = chromebookList.get(i).getOs();
-//			
-//			output += String.format("%-10s %-30s %-10s %-10s %-20s\n", assetTag, description, showAvailability, dueDate,
-//					os);
+            //refactor long code
 			output += String.format("%-85s\n", chromebookList.get(i).toString());
 		}
 		return output;
